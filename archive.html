@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Archive | Journal of Medical Research Practice</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="topstrip">
+  <div class="wrap">
+    <span>ISSN: XXXX-XXXX &nbsp;|&nbsp; Open Access &nbsp;|&nbsp; Peer Reviewed</span>
+    <span>Users online: <b id="online">—</b></span>
+  </div>
+</div>
+
+<header class="brand">
+  <div class="wrap">
+    <div class="logo">J</div>
+    <div>
+      <h1>Journal of Medical Research Practice</h1>
+      <p>Publishing findings from clinicians, researchers and postgraduate students</p>
+    </div>
+  </div>
+</header>
+
+<nav class="main">
+  <div class="wrap">
+    <button class="menu-toggle" onclick="document.getElementById('menu').classList.toggle('open')">☰ Menu</button>
+    <ul id="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#">About Us</a>
+        <ul>
+          <li><a href="about.html">Salient Features</a></li>
+          <li><a href="indexing.html">Abstracting &amp; Indexing</a></li>
+          <li><a href="specialties.html">Specialties Covered</a></li>
+          <li><a href="publisher.html">Publisher</a></li>
+          <li><a href="policies.html">Journal Policies</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Issues</a>
+        <ul>
+          <li><a href="current-issue.html">Current Issue</a></li>
+          <li><a href="online-first.html">Online Ahead of Print</a></li>
+          <li><a href="archive.html">Archive</a></li>
+          <li><a href="forthcoming.html">Forthcoming Issue</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Editorial</a>
+        <ul>
+          <li><a href="editorial-statements.html">Editorial Statements</a></li>
+          <li><a href="peer-review.html">Peer Review Process</a></li>
+          <li><a href="editorial-board.html">Editorial Board</a></li>
+          <li><a href="join-us.html">Join Us</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Authors</a>
+        <ul>
+          <li><a href="submit.html">Submit an Article</a></li>
+          <li><a href="instructions.html">Manuscript Instructions</a></li>
+          <li><a href="assistance.html">Manuscript Assistance</a></li>
+          <li><a href="charges.html">Publication Charges</a></li>
+          <li><a href="early-online.html">Early Online Publication</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Reviewers</a>
+        <ul>
+          <li><a href="reviewer-apply.html">Apply as Reviewer</a></li>
+          <li><a href="reviewer-guide.html">Instructions for Reviewers</a></li>
+          <li><a href="reviewer-list.html">Reviewer Acknowledgment</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Search</a>
+        <ul>
+          <li><a href="search.html">Simple Search</a></li>
+          <li><a href="advanced-search.html">Advanced Search</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Subscription</a>
+        <ul>
+          <li><a href="subscription.html#annual">Annual Subscription</a></li>
+          <li><a href="subscription.html#single">Buy One Issue</a></li>
+          <li><a href="subscription.html#payment">Payment Options</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Register</a>
+        <ul>
+          <li><a href="register-author.html">New Submission (Author)</a></li>
+          <li><a href="register-reader.html">Post-publication Review (Reader)</a></li>
+        </ul>
+      </li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="quick">
+  <div class="wrap">
+    <form action="search.html" method="get">
+      <input type="text" name="q" placeholder="Search articles by title, author, keyword…">
+      <button class="btn" type="submit">Search</button>
+      <a class="btn ghost" href="advanced-search.html">Advanced Search</a>
+      <a class="btn alt" href="current-issue.html">Current Issue</a>
+      <a class="btn ghost" href="archive.html">Past Issues</a>
+    </form>
+  </div>
+</div>
+
+
+<div class="page">
+<div class="crumbs"><a href="index.html">Home</a> › Archive</div>
+<div class="card"><h1>Archive</h1><p>Browse past issues.</p><div id="arcList"></div></div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>Journal</h4>
+        <a href="about.html">About Us</a><br>
+        <a href="editorial-board.html">Editorial Board</a><br>
+        <a href="policies.html">Policies</a>
+      </div>
+      <div>
+        <h4>Authors &amp; Reviewers</h4>
+        <a href="submit.html">Submit an Article</a><br>
+        <a href="instructions.html">Instructions</a><br>
+        <a href="reviewer-apply.html">Become a Reviewer</a>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <a href="sitemap.html">Sitemap</a><br>
+        <a href="feedback.html">Feedback</a><br>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="disclaimer.html">Copyright &amp; Disclaimer</a><br>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="copy">© 2026 Journal of Medical Research Practice. All rights reserved.</div>
+  </div>
+</footer>
+
+
+<script src="app.js"></script>
+<script>renderList('arcList', ARTICLES.filter(a=>a.issue!=='online'));</script>
+</body>
+</html>
