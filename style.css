@@ -118,3 +118,22 @@ form.f .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .steps li::before{content:counter(s);position:absolute;left:12px;top:9px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#222;font-weight:700;text-align:center;line-height:26px}
 .badge{display:inline-block;background:#eaf1fa;color:var(--primary-dark);padding:2px 10px;border-radius:12px;font-size:12px}
 @media(max-width:600px){form.f .row{grid-template-columns:1fr}}
+.av-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 18px}
+.av-tabs button{border:1px solid var(--primary);background:#fff;color:var(--primary);padding:7px 16px;border-radius:20px;cursor:pointer;font-size:14px}
+.av-tabs button.on{background:var(--primary);color:#fff}
+.av-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.av-card{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.av-thumb{aspect-ratio:16/9;background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:#fff;display:flex;align-items:center;justify-content:center;font-size:44px;position:relative;cursor:pointer;border:0;width:100%}
+.av-thumb.audio{background:linear-gradient(135deg,#2a7f62,#1d5c47)}
+.av-thumb.image{background:linear-gradient(135deg,#8a4a1b,#6a3711)}
+.av-thumb .dur{position:absolute;right:8px;bottom:8px;background:rgba(0,0,0,.65);font-size:12px;padding:2px 8px;border-radius:4px}
+.av-body{padding:12px 14px;flex:1;display:flex;flex-direction:column;gap:4px}
+.av-body h3{font-size:15px;margin:0!important}
+.av-body .meta{font-size:12px;color:var(--muted)}
+.av-body a{font-size:13px;margin-top:auto}
+.av-modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;z-index:100;padding:16px}
+.av-modal.open{display:flex}
+.av-box{background:#fff;border-radius:10px;max-width:820px;width:100%;padding:16px;max-height:92vh;overflow:auto}
+.av-box video,.av-box audio,.av-box img{width:100%;border-radius:6px;background:#000}
+.av-box .x{float:right;border:0;background:none;font-size:24px;cursor:pointer}
+.av-note{background:#fff8e6;border:1px solid #f2d68a;border-radius:8px;padding:12px;font-size:14px;margin-top:18px}
