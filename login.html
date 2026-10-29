@@ -1,156 +1,2951 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
 <title>Login | Journal of Medical Research Practice</title>
-<link rel="stylesheet" href="style.css">
+
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f8fb;
+    color: #333;
+}
+
+a {
+    color: #123560;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.wrap {
+    width: 92%;
+    max-width: 1250px;
+    margin: auto;
+}
+
+
+/* =========================================================
+   TOP STRIP
+========================================================= */
+
+.topstrip {
+    background: #123b5d;
+    color: #fff;
+    font-size: 13px;
+    padding: 8px 0;
+}
+
+.topstrip .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand {
+    background: #fff;
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.brand .wrap {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: #123560;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 38px;
+    font-weight: bold;
+}
+
+.brand h1 {
+    margin: 0;
+    color: #123b5d;
+    font-size: 28px;
+}
+
+.brand p {
+    margin: 5px 0 0;
+    color: #777;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+nav.main {
+    background: #123560;
+}
+
+nav.main .wrap {
+    position: relative;
+}
+
+.menu-toggle {
+    display: none;
+    padding: 12px 15px;
+    border: none;
+    background: #123b5d;
+    color: white;
+    cursor: pointer;
+}
+
+nav.main ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav.main > .wrap > ul {
+    display: flex;
+}
+
+nav.main li {
+    position: relative;
+}
+
+nav.main li a {
+    display: block;
+    color: white;
+    padding: 15px 13px;
+    font-size: 14px;
+}
+
+nav.main li a:hover {
+    background: #123b5d;
+}
+
+nav.main li ul {
+    display: none;
+    position: absolute;
+    min-width: 220px;
+    background: white;
+    box-shadow: 0 6px 20px rgba(0,0,0,.15);
+    z-index: 1000;
+}
+
+nav.main li:hover > ul {
+    display: block;
+}
+
+nav.main li ul li a {
+    color: #333;
+    padding: 11px 15px;
+}
+
+nav.main li ul li a:hover {
+    background: #edf5fa;
+    color: #123560;
+}
+
+
+/* =========================================================
+   AUTH AREA
+========================================================= */
+
+.auth-page {
+    min-height: 70vh;
+    padding: 50px 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 500px;
+
+    background: #fff;
+
+    padding: 35px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.10);
+}
+
+.auth-card h1 {
+    color: #123b5d;
+    margin: 0 0 8px;
+}
+
+.auth-subtitle {
+    color: #777;
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   AUTH STEPS
+========================================================= */
+
+.auth-step {
+    display: none;
+}
+
+.auth-step.active {
+    display: block;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.form-group input,
+.auth-input {
+    width: 100%;
+    padding: 13px;
+
+    border: 1px solid #ccd5dd;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: #123560;
+
+    box-shadow:
+        0 0 0 3px rgba(22,139,208,.12);
+}
+
+
+/* =========================================================
+   PASSWORD
+========================================================= */
+
+.password-box {
+    position: relative;
+}
+
+.password-box input {
+    padding-right: 50px;
+}
+
+.password-eye {
+    position: absolute;
+
+    right: 10px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 19px;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.btn {
+    display: inline-block;
+
+    border: none;
+
+    background: #123560;
+
+    color: white;
+
+    padding: 12px 20px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition: .2s;
+}
+
+.btn:hover {
+    background: #123b5d;
+}
+
+.btn.full {
+    width: 100%;
+}
+
+
+/* =========================================================
+   CAPTCHA
+========================================================= */
+
+.captcha-title {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.captcha-box {
+    display: flex;
+
+    gap: 10px;
+
+    align-items: center;
+
+    margin-bottom: 10px;
+}
+
+.captcha-code {
+    flex: 1;
+
+    padding: 12px;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #edf3f7,
+            #edf3f7 5px,
+            #e0e9ef 5px,
+            #e0e9ef 10px
+        );
+
+    border: 1px dashed #6c7b88;
+
+    border-radius: 7px;
+
+    text-align: center;
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+    letter-spacing: 5px;
+
+    font-style: italic;
+
+    user-select: none;
+}
+
+.captcha-refresh {
+    background: #123b5d;
+
+    color: white;
+
+    border: none;
+
+    padding: 11px 14px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   OTP
+========================================================= */
+
+.otp-input {
+    text-align: center;
+
+    letter-spacing: 9px;
+
+    font-size: 25px !important;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.auth-message {
+    display: none;
+
+    margin-top: 15px;
+
+    padding: 12px;
+
+    border-radius: 7px;
+
+    font-size: 14px;
+}
+
+.auth-message.success {
+    display: block;
+
+    background: #e9f8ef;
+
+    color: #16723b;
+}
+
+.auth-message.error {
+    display: block;
+
+    background: #fdecec;
+
+    color: #a52323;
+}
+
+.auth-message.info {
+    display: block;
+
+    background: #eaf5fc;
+
+    color: #145b83;
+}
+
+
+/* =========================================================
+   LINKS
+========================================================= */
+
+.forgot-link {
+    text-align: right;
+
+    margin-top: -7px;
+
+    margin-bottom: 20px;
+}
+
+.auth-links {
+    text-align: center;
+
+    margin-top: 20px;
+
+    color: #777;
+}
+
+.back-button {
+    border: none;
+
+    background: transparent;
+
+    color: #123560;
+
+    cursor: pointer;
+
+    padding: 0;
+
+    margin-bottom: 15px;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   PASSWORD RULES
+========================================================= */
+
+.password-rules {
+    background: #f6f8fa;
+
+    border-radius: 7px;
+
+    padding: 10px;
+
+    margin-top: 8px;
+
+    font-size: 13px;
+}
+
+.password-rules div {
+    margin: 4px 0;
+}
+
+.rule-ok {
+    color: #159447;
+}
+
+.rule-error {
+    color: #a52525;
+}
+
+
+/* =========================================================
+   PASSWORD STRENGTH
+========================================================= */
+
+.strength {
+    width: 100%;
+
+    height: 6px;
+
+    background: #ddd;
+
+    border-radius: 5px;
+
+    overflow: hidden;
+
+    margin-top: 8px;
+}
+
+.strength-bar {
+    height: 100%;
+
+    width: 0%;
+
+    transition: .3s;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    background: #123b5d;
+
+    color: white;
+
+    padding: 35px 0 15px;
+}
+
+.cols {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 30px;
+}
+
+footer h4 {
+    margin-top: 0;
+}
+
+footer a {
+    color: #dcecf7;
+
+    line-height: 2;
+}
+
+.copy {
+    border-top: 1px solid rgba(255,255,255,.2);
+
+    margin-top: 25px;
+
+    padding-top: 15px;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    color: #d5e2eb;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:900px) {
+
+    .menu-toggle {
+        display: block;
+    }
+
+    nav.main > .wrap > ul {
+        display: none;
+        flex-direction: column;
+    }
+
+    nav.main > .wrap > ul.open {
+        display: flex;
+    }
+
+    nav.main li ul {
+        position: static;
+        box-shadow: none;
+    }
+
+    nav.main li:hover > ul {
+        display: none;
+    }
+
+    .cols {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+
+@media(max-width:600px) {
+
+    .topstrip .wrap {
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+    .brand h1 {
+        font-size: 21px;
+    }
+
+    .brand p {
+        font-size: 13px;
+    }
+
+    .auth-card {
+        padding: 25px 20px;
+    }
+
+    .cols {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
 </head>
+
+
 <body>
+
+
+<!-- =====================================================
+     TOP STRIP
+====================================================== -->
+
 <div class="topstrip">
-  <div class="wrap">
-    <span>ISSN: XXXX-XXXX &nbsp;|&nbsp; Open Access &nbsp;|&nbsp; Peer Reviewed</span>
-    <span>Users online: <b id="online">—</b></span>
-  </div>
+
+    <div class="wrap">
+
+        <span>
+            ISSN: XXXX-XXXX
+            &nbsp;|&nbsp;
+            Open Access
+            &nbsp;|&nbsp;
+            Peer Reviewed
+        </span>
+
+        <span>
+            Users online:
+            <b id="online">—</b>
+        </span>
+
+    </div>
+
 </div>
+
+
+<!-- =====================================================
+     BRAND
+====================================================== -->
 
 <header class="brand">
-  <div class="wrap">
-    <div class="logo">J</div>
-    <div>
-      <h1>Journal of Medical Research Practice</h1>
-      <p>Publishing findings from clinicians, researchers and postgraduate students</p>
+
+    <div class="wrap">
+
+        <div class="logo">
+            J
+        </div>
+
+        <div>
+
+            <h1>
+                Journal of Medical Research Practice
+            </h1>
+
+            <p>
+                Publishing findings from clinicians,
+                researchers and postgraduate students
+            </p>
+
+        </div>
+
     </div>
-  </div>
+
 </header>
 
+
+<!-- =====================================================
+     NAVIGATION
+====================================================== -->
+
 <nav class="main">
-  <div class="wrap">
-    <button class="menu-toggle" onclick="document.getElementById('menu').classList.toggle('open')">☰ Menu</button>
-    <ul id="menu">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="#">About Us</a>
-        <ul>
-          <li><a href="about.html">Salient Features</a></li>
-          <li><a href="indexing.html">Abstracting &amp; Indexing</a></li>
-          <li><a href="specialties.html">Specialties Covered</a></li>
-          <li><a href="publisher.html">Publisher</a></li>
-          <li><a href="policies.html">Journal Policies</a></li>
-          <li><a href="testimonials.html">Testimonials</a></li>
+
+    <div class="wrap">
+
+        <button
+            class="menu-toggle"
+            onclick="toggleMenu()">
+
+            ☰ Menu
+
+        </button>
+
+
+        <ul id="menu">
+
+            <li>
+                <a href="index.html">
+                    Home
+                </a>
+            </li>
+
+
+            <li>
+
+                <a href="#">
+                    About Us
+                </a>
+
+                <ul>
+
+                    <li>
+                        <a href="about.html">
+                            Salient Features
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="indexing.html">
+                            Abstracting &amp; Indexing
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="specialties.html">
+                            Specialties Covered
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="publisher.html">
+                            Publisher
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="policies.html">
+                            Journal Policies
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="testimonials.html">
+                            Testimonials
+                        </a>
+                    </li>
+
+                </ul>
+
+            </li>
+
+
+            <li>
+
+                <a href="#">
+                    Issues
+                </a>
+
+                <ul>
+
+                    <li>
+                        <a href="current-issue.html">
+                            Current Issue
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="online-first.html">
+                            Online Ahead of Print
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="archive.html">
+                            Archive
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="audio-visual.html">
+                            Audio-Visual Section
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="forthcoming.html">
+                            Forthcoming Issue
+                        </a>
+                    </li>
+
+                </ul>
+
+            </li>
+
+
+            <li>
+
+                <a href="#">
+                    Editorial
+                </a>
+
+                <ul>
+
+                    <li>
+                        <a href="editorial-statements.html">
+                            Editorial Statements
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="peer-review.html">
+                            Peer Review Process
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="editorial-board.html">
+                            Editorial Board
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="join-us.html">
+                            Join Us
+                        </a>
+                    </li>
+
+                </ul>
+
+            </li>
+
+
+            <li>
+
+                <a href="#">
+                    Authors
+                </a>
+
+                <ul>
+
+                    <li>
+                        <a href="submit.html">
+                            Submit an Article
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="instructions.html">
+                            Manuscript Instructions
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="assistance.html">
+                            Manuscript Assistance
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="charges.html">
+                            Publication Charges
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="early-online.html">
+                            Early Online Publication
+                        </a>
+                    </li>
+
+                </ul>
+
+            </li>
+
+
+            <li>
+
+                <a href="#">
+                    Reviewers
+                </a>
+
+                <ul>
+
+                    <li>
+                        <a href="reviewer-apply.html">
+                            Apply as Reviewer
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="reviewer-guide.html">
+                            Instructions for Reviewers
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="reviewer-list.html">
+                            Reviewer Acknowledgment
+                        </a>
+                    </li>
+
+                </ul>
+
+            </li>
+
+
+            <li>
+
+                <a href="#">
+                    Search
+                </a>
+
+                <ul>
+
+                    <li>
+                        <a href="search.html">
+                            Simple Search
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="advanced-search.html">
+                            Advanced Search
+                        </a>
+                    </li>
+
+                </ul>
+
+            </li>
+
+
+            <li>
+
+                <a href="#">
+                    Subscription
+                </a>
+
+                <ul>
+
+                    <li>
+                        <a href="subscription.html#annual">
+                            Annual Subscription
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="subscription.html#single">
+                            Buy One Issue
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="subscription.html#payment">
+                            Payment Options
+                        </a>
+                    </li>
+
+                </ul>
+
+            </li>
+
+
+            <li>
+
+                <a href="#">
+                    Register
+                </a>
+
+                <ul>
+
+                    <li>
+                        <a href="#"
+                           onclick="showRegister()">
+                            New Submission (Author)
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="register-reader.html">
+                            Post-publication Review (Reader)
+                        </a>
+                    </li>
+
+                </ul>
+
+            </li>
+
+
+            <li>
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+            </li>
+
         </ul>
-      </li>
-      <li><a href="#">Issues</a>
-        <ul>
-          <li><a href="current-issue.html">Current Issue</a></li>
-          <li><a href="online-first.html">Online Ahead of Print</a></li>
-          <li><a href="archive.html">Archive</a></li>
-          <li><a href="forthcoming.html">Forthcoming Issue</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Editorial</a>
-        <ul>
-          <li><a href="editorial-statements.html">Editorial Statements</a></li>
-          <li><a href="peer-review.html">Peer Review Process</a></li>
-          <li><a href="editorial-board.html">Editorial Board</a></li>
-          <li><a href="join-us.html">Join Us</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Authors</a>
-        <ul>
-          <li><a href="submit.html">Submit an Article</a></li>
-          <li><a href="instructions.html">Manuscript Instructions</a></li>
-          <li><a href="assistance.html">Manuscript Assistance</a></li>
-          <li><a href="charges.html">Publication Charges</a></li>
-          <li><a href="early-online.html">Early Online Publication</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Reviewers</a>
-        <ul>
-          <li><a href="reviewer-apply.html">Apply as Reviewer</a></li>
-          <li><a href="reviewer-guide.html">Instructions for Reviewers</a></li>
-          <li><a href="reviewer-list.html">Reviewer Acknowledgment</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Search</a>
-        <ul>
-          <li><a href="search.html">Simple Search</a></li>
-          <li><a href="advanced-search.html">Advanced Search</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Subscription</a>
-        <ul>
-          <li><a href="subscription.html#annual">Annual Subscription</a></li>
-          <li><a href="subscription.html#single">Buy One Issue</a></li>
-          <li><a href="subscription.html#payment">Payment Options</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Register</a>
-        <ul>
-          <li><a href="register-author.html">New Submission (Author)</a></li>
-          <li><a href="register-reader.html">Post-publication Review (Reader)</a></li>
-        </ul>
-      </li>
-      <li><a href="login.html">Login</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </div>
+
+    </div>
+
 </nav>
 
-<div class="quick">
-  <div class="wrap">
-    <form action="search.html" method="get">
-      <input type="text" name="q" placeholder="Search articles by title, author, keyword…">
-      <button class="btn" type="submit">Search</button>
-      <a class="btn ghost" href="advanced-search.html">Advanced Search</a>
-      <a class="btn alt" href="current-issue.html">Current Issue</a>
-      <a class="btn ghost" href="archive.html">Past Issues</a>
-    </form>
-  </div>
+
+<!-- =====================================================
+     AUTHENTICATION
+====================================================== -->
+
+<div class="auth-page">
+
+<div class="auth-card">
+
+
+<!-- =====================================================
+     LOGIN
+====================================================== -->
+
+<section
+    id="loginStep"
+    class="auth-step active">
+
+
+<h1>
+    Login
+</h1>
+
+
+<p class="auth-subtitle">
+
+    Sign in to your Journal account
+
+</p>
+
+
+<form id="loginForm">
+
+
+<div class="form-group">
+
+<label>
+    Email Address
+</label>
+
+<input
+    type="email"
+    id="loginEmail"
+    placeholder="Enter your registered email"
+    required>
+
 </div>
 
 
-<div class="page">
-<div class="crumbs"><a href="index.html">Home</a> › Login</div>
-<div class="card"><h1>Login</h1>
-<form class="f" id="loginF" style="max-width:420px">
-<div><label>Email</label><input type="email" required></div>
-<div><label>Password</label><input type="password" required></div>
-<button class="btn">Login</button>
-<a href="register-author.html">Create an account</a></form><div class="msg" id="loginM"></div></div>
+<div class="form-group">
+
+<label>
+    Password
+</label>
+
+
+<div class="password-box">
+
+<input
+    type="password"
+    id="loginPassword"
+    placeholder="Enter your password"
+    required>
+
+
+<button
+    type="button"
+    class="password-eye"
+    onclick="togglePassword(
+        'loginPassword',
+        this
+    )">
+
+    👁
+
+</button>
+
 </div>
+
+</div>
+
+
+<div class="forgot-link">
+
+<a onclick="showForgotPassword()">
+
+    Forgot Password?
+
+</a>
+
+</div>
+
+
+<label class="captcha-title">
+
+    Security Verification
+
+</label>
+
+
+<div class="captcha-box">
+
+<div
+    id="loginCaptcha"
+    class="captcha-code">
+</div>
+
+
+<button
+    type="button"
+    class="captcha-refresh"
+    onclick="generateCaptcha('login')">
+
+    ↻
+
+</button>
+
+</div>
+
+
+<input
+    class="auth-input"
+    id="loginCaptchaInput"
+    placeholder="Enter CAPTCHA"
+    autocomplete="off"
+    required>
+
+
+<br><br>
+
+
+<button
+    type="submit"
+    class="btn full">
+
+    Continue
+
+</button>
+
+
+</form>
+
+
+<div
+    id="loginMessage"
+    class="auth-message">
+</div>
+
+
+<div class="auth-links">
+
+    Don't have an account?
+
+    <a onclick="showRegister()">
+
+        Create an account
+
+    </a>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     LOGIN OTP
+====================================================== -->
+
+<section
+    id="loginOtpStep"
+    class="auth-step">
+
+
+<button
+    class="back-button"
+    onclick="showStep('loginStep')">
+
+    ← Back to Login
+
+</button>
+
+
+<h1>
+    Verify Your Email
+</h1>
+
+
+<p class="auth-subtitle">
+
+    We sent a 6-digit OTP to
+
+    <strong id="loginOtpEmail">
+    </strong>
+
+</p>
+
+
+<div class="form-group">
+
+<label>
+    Verification OTP
+</label>
+
+<input
+    id="loginOtp"
+    class="otp-input auth-input"
+    maxlength="6"
+    inputmode="numeric"
+    placeholder="••••••">
+
+</div>
+
+
+<button
+    class="btn full"
+    onclick="verifyLoginOtp()">
+
+    Verify & Login
+
+</button>
+
+
+<div
+    id="loginOtpMessage"
+    class="auth-message">
+</div>
+
+
+<div class="auth-links">
+
+    Didn't receive OTP?
+
+    <a onclick="resendLoginOtp()">
+
+        Resend OTP
+
+    </a>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     REGISTER
+====================================================== -->
+
+<section
+    id="registerStep"
+    class="auth-step">
+
+
+<button
+    class="back-button"
+    onclick="showStep('loginStep')">
+
+    ← Back to Login
+
+</button>
+
+
+<h1>
+    Create Account
+</h1>
+
+
+<p class="auth-subtitle">
+
+    Register for Journal of Medical Research Practice
+
+</p>
+
+
+<form id="registerForm">
+
+
+<div class="form-group">
+
+<label>
+    Full Name
+</label>
+
+<input
+    type="text"
+    id="registerName"
+    placeholder="Enter your full name"
+    required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    Email Address
+</label>
+
+<input
+    type="email"
+    id="registerEmail"
+    placeholder="Enter your email address"
+    required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    Create Password
+</label>
+
+
+<div class="password-box">
+
+<input
+    type="password"
+    id="registerPassword"
+    placeholder="Create a strong password"
+    required>
+
+
+<button
+    type="button"
+    class="password-eye"
+    onclick="togglePassword(
+        'registerPassword',
+        this
+    )">
+
+    👁
+
+</button>
+
+</div>
+
+
+<div class="password-rules">
+
+<div id="lengthRule">
+    ○ At least 8 characters
+</div>
+
+<div id="upperRule">
+    ○ One uppercase letter
+</div>
+
+<div id="lowerRule">
+    ○ One lowercase letter
+</div>
+
+<div id="numberRule">
+    ○ One number
+</div>
+
+<div id="specialRule">
+    ○ One special symbol
+</div>
+
+</div>
+
+
+<div class="strength">
+
+<div
+    id="strengthBar"
+    class="strength-bar">
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    Confirm Password
+</label>
+
+
+<div class="password-box">
+
+<input
+    type="password"
+    id="confirmPassword"
+    placeholder="Confirm your password"
+    required>
+
+
+<button
+    type="button"
+    class="password-eye"
+    onclick="togglePassword(
+        'confirmPassword',
+        this
+    )">
+
+    👁
+
+</button>
+
+</div>
+
+</div>
+
+
+<label class="captcha-title">
+
+    Security Verification
+
+</label>
+
+
+<div class="captcha-box">
+
+<div
+    id="registerCaptcha"
+    class="captcha-code">
+</div>
+
+
+<button
+    type="button"
+    class="captcha-refresh"
+    onclick="generateCaptcha('register')">
+
+    ↻
+
+</button>
+
+</div>
+
+
+<input
+    class="auth-input"
+    id="registerCaptchaInput"
+    placeholder="Enter CAPTCHA"
+    autocomplete="off"
+    required>
+
+
+<br><br>
+
+
+<button
+    type="submit"
+    class="btn full">
+
+    Create Account
+
+</button>
+
+
+</form>
+
+
+<div
+    id="registerMessage"
+    class="auth-message">
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     REGISTER OTP
+====================================================== -->
+
+<section
+    id="registerOtpStep"
+    class="auth-step">
+
+
+<h1>
+    Verify Your Email
+</h1>
+
+
+<p class="auth-subtitle">
+
+    A verification OTP has been sent to
+
+    <strong id="registerOtpEmail">
+    </strong>
+
+</p>
+
+
+<div class="form-group">
+
+<label>
+    Email Verification OTP
+</label>
+
+<input
+    id="registerOtp"
+    class="otp-input auth-input"
+    maxlength="6"
+    inputmode="numeric"
+    placeholder="••••••">
+
+</div>
+
+
+<button
+    class="btn full"
+    onclick="verifyRegisterOtp()">
+
+    Verify Email & Create Account
+
+</button>
+
+
+<div
+    id="registerOtpMessage"
+    class="auth-message">
+</div>
+
+
+<div class="auth-links">
+
+    Didn't receive OTP?
+
+    <a onclick="resendRegisterOtp()">
+
+        Resend OTP
+
+    </a>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     FORGOT PASSWORD
+====================================================== -->
+
+<section
+    id="forgotStep"
+    class="auth-step">
+
+
+<button
+    class="back-button"
+    onclick="showStep('loginStep')">
+
+    ← Back to Login
+
+</button>
+
+
+<h1>
+    Forgot Password?
+</h1>
+
+
+<p class="auth-subtitle">
+
+    Enter your registered email address.
+
+</p>
+
+
+<form id="forgotForm">
+
+
+<div class="form-group">
+
+<label>
+    Email Address
+</label>
+
+<input
+    type="email"
+    id="forgotEmail"
+    placeholder="Registered email"
+    required>
+
+</div>
+
+
+<label class="captcha-title">
+
+    Security Verification
+
+</label>
+
+
+<div class="captcha-box">
+
+<div
+    id="forgotCaptcha"
+    class="captcha-code">
+</div>
+
+
+<button
+    type="button"
+    class="captcha-refresh"
+    onclick="generateCaptcha('forgot')">
+
+    ↻
+
+</button>
+
+</div>
+
+
+<input
+    class="auth-input"
+    id="forgotCaptchaInput"
+    placeholder="Enter CAPTCHA"
+    required>
+
+
+<br><br>
+
+
+<button
+    type="submit"
+    class="btn full">
+
+    Send OTP
+
+</button>
+
+
+</form>
+
+
+<div
+    id="forgotMessage"
+    class="auth-message">
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     RESET PASSWORD
+====================================================== -->
+
+<section
+    id="resetStep"
+    class="auth-step">
+
+
+<h1>
+    Reset Password
+</h1>
+
+
+<p class="auth-subtitle">
+
+    Verify the OTP and create a new password.
+
+</p>
+
+
+<div class="form-group">
+
+<label>
+    OTP
+</label>
+
+<input
+    id="resetOtp"
+    class="otp-input auth-input"
+    maxlength="6"
+    inputmode="numeric"
+    placeholder="••••••">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    New Password
+</label>
+
+
+<div class="password-box">
+
+<input
+    type="password"
+    id="newPassword"
+    placeholder="New password">
+
+
+<button
+    type="button"
+    class="password-eye"
+    onclick="togglePassword(
+        'newPassword',
+        this
+    )">
+
+    👁
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    Confirm New Password
+</label>
+
+
+<div class="password-box">
+
+<input
+    type="password"
+    id="confirmNewPassword"
+    placeholder="Confirm new password">
+
+
+<button
+    type="button"
+    class="password-eye"
+    onclick="togglePassword(
+        'confirmNewPassword',
+        this
+    )">
+
+    👁
+
+</button>
+
+</div>
+
+</div>
+
+
+<button
+    class="btn full"
+    onclick="resetPassword()">
+
+    Reset Password
+
+</button>
+
+
+<div
+    id="resetMessage"
+    class="auth-message">
+</div>
+
+
+</section>
+
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
 <footer>
-  <div class="wrap">
-    <div class="cols">
-      <div>
-        <h4>Journal</h4>
-        <a href="about.html">About Us</a><br>
-        <a href="editorial-board.html">Editorial Board</a><br>
-        <a href="policies.html">Policies</a>
-      </div>
-      <div>
-        <h4>Authors &amp; Reviewers</h4>
-        <a href="submit.html">Submit an Article</a><br>
-        <a href="instructions.html">Instructions</a><br>
-        <a href="reviewer-apply.html">Become a Reviewer</a>
-      </div>
-      <div>
-        <h4>Help</h4>
-        <a href="sitemap.html">Sitemap</a><br>
-        <a href="feedback.html">Feedback</a><br>
-        <a href="contact.html">Contact</a>
-      </div>
-      <div>
-        <h4>Legal</h4>
-        <a href="disclaimer.html">Copyright &amp; Disclaimer</a><br>
-        <a href="privacy.html">Privacy Policy</a>
-      </div>
-    </div>
-    <div class="copy">© 2026 Journal of Medical Research Practice. All rights reserved.</div>
-  </div>
+
+<div class="wrap">
+
+<div class="cols">
+
+
+<div>
+
+<h4>
+    Journal
+</h4>
+
+<a href="about.html">
+    About Us
+</a>
+<br>
+
+<a href="editorial-board.html">
+    Editorial Board
+</a>
+<br>
+
+<a href="policies.html">
+    Policies
+</a>
+
+</div>
+
+
+<div>
+
+<h4>
+    Authors & Reviewers
+</h4>
+
+<a href="submit.html">
+    Submit an Article
+</a>
+<br>
+
+<a href="instructions.html">
+    Instructions
+</a>
+<br>
+
+<a href="reviewer-apply.html">
+    Become a Reviewer
+</a>
+
+</div>
+
+
+<div>
+
+<h4>
+    Help
+</h4>
+
+<a href="sitemap.html">
+    Sitemap
+</a>
+<br>
+
+<a href="feedback.html">
+    Feedback
+</a>
+<br>
+
+<a href="contact.html">
+    Contact
+</a>
+
+</div>
+
+
+<div>
+
+<h4>
+    Legal
+</h4>
+
+<a href="disclaimer.html">
+    Copyright & Disclaimer
+</a>
+<br>
+
+<a href="privacy.html">
+    Privacy Policy
+</a>
+
+</div>
+
+
+</div>
+
+
+<div class="copy">
+
+© 2026 Journal of Medical Research Practice.
+All rights reserved.
+
+</div>
+
+
+</div>
+
 </footer>
 
 
-<script src="app.js"></script>
-<script>demoForm('loginF','loginM','Demo login only – connect to your backend. Token: ');</script>
+
+<script>
+
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
+
+let captchaValues = {};
+
+let pendingLogin = {
+    email: ""
+};
+
+let pendingRegister = {
+    name: "",
+    email: "",
+    password: ""
+};
+
+let pendingForgotEmail = "";
+
+
+/* =========================================================
+   MENU
+========================================================= */
+
+function toggleMenu() {
+
+    document
+        .getElementById("menu")
+        .classList.toggle("open");
+
+}
+
+
+/* =========================================================
+   STEP MANAGEMENT
+========================================================= */
+
+function showStep(stepId) {
+
+    document
+        .querySelectorAll(".auth-step")
+        .forEach(function(step) {
+
+            step.classList.remove("active");
+
+        });
+
+
+    const step =
+        document.getElementById(stepId);
+
+
+    if (step) {
+
+        step.classList.add("active");
+
+    }
+
+}
+
+
+function showRegister() {
+
+    showStep("registerStep");
+
+    generateCaptcha("register");
+
+}
+
+
+function showForgotPassword() {
+
+    showStep("forgotStep");
+
+    generateCaptcha("forgot");
+
+}
+
+
+/* =========================================================
+   PASSWORD EYE
+========================================================= */
+
+function togglePassword(inputId, button) {
+
+    const input =
+        document.getElementById(inputId);
+
+
+    if (input.type === "password") {
+
+        input.type = "text";
+
+        button.textContent = "🙈";
+
+    } else {
+
+        input.type = "password";
+
+        button.textContent = "👁";
+
+    }
+
+}
+
+
+/* =========================================================
+   CAPTCHA
+========================================================= */
+
+function createCaptchaCode() {
+
+    const characters =
+        "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+
+    let result = "";
+
+
+    for (let i = 0; i < 6; i++) {
+
+        result +=
+            characters[
+                Math.floor(
+                    Math.random() *
+                    characters.length
+                )
+            ];
+
+    }
+
+
+    return result;
+
+}
+
+
+function generateCaptcha(type) {
+
+    const code =
+        createCaptchaCode();
+
+
+    captchaValues[type] =
+        code;
+
+
+    const captcha =
+        document.getElementById(
+            type + "Captcha"
+        );
+
+
+    if (captcha) {
+
+        captcha.textContent =
+            code;
+
+    }
+
+
+    const input =
+        document.getElementById(
+            type + "CaptchaInput"
+        );
+
+
+    if (input) {
+
+        input.value = "";
+
+    }
+
+}
+
+
+function validateCaptcha(type) {
+
+    const input =
+        document.getElementById(
+            type + "CaptchaInput"
+        );
+
+
+    if (!input) {
+
+        return false;
+
+    }
+
+
+    return (
+        input.value
+            .trim()
+            .toUpperCase()
+        ===
+        captchaValues[type]
+    );
+
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+function showMessage(
+    elementId,
+    message,
+    type
+) {
+
+    const element =
+        document.getElementById(
+            elementId
+        );
+
+
+    if (!element) return;
+
+
+    element.textContent =
+        message;
+
+
+    element.className =
+        "auth-message " +
+        type;
+
+}
+
+
+/* =========================================================
+   PASSWORD VALIDATION
+========================================================= */
+
+function validatePassword(password) {
+
+    return {
+
+        length:
+            password.length >= 8,
+
+        upper:
+            /[A-Z]/.test(password),
+
+        lower:
+            /[a-z]/.test(password),
+
+        number:
+            /[0-9]/.test(password),
+
+        special:
+            /[^A-Za-z0-9]/.test(password)
+
+    };
+
+}
+
+
+function updateRule(
+    id,
+    valid,
+    text
+) {
+
+    const element =
+        document.getElementById(id);
+
+
+    if (!element) return;
+
+
+    element.textContent =
+        (valid ? "✓ " : "○ ")
+        + text;
+
+
+    element.className =
+        valid
+            ? "rule-ok"
+            : "rule-error";
+
+}
+
+
+function updatePasswordRules() {
+
+    const password =
+        document
+            .getElementById(
+                "registerPassword"
+            )
+            .value;
+
+
+    const rules =
+        validatePassword(password);
+
+
+    updateRule(
+        "lengthRule",
+        rules.length,
+        "At least 8 characters"
+    );
+
+
+    updateRule(
+        "upperRule",
+        rules.upper,
+        "One uppercase letter"
+    );
+
+
+    updateRule(
+        "lowerRule",
+        rules.lower,
+        "One lowercase letter"
+    );
+
+
+    updateRule(
+        "numberRule",
+        rules.number,
+        "One number"
+    );
+
+
+    updateRule(
+        "specialRule",
+        rules.special,
+        "One special symbol"
+    );
+
+
+    const score =
+        Object.values(rules)
+        .filter(Boolean)
+        .length;
+
+
+    const bar =
+        document.getElementById(
+            "strengthBar"
+        );
+
+
+    bar.style.width =
+        (score * 20) + "%";
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        generateCaptcha("login");
+
+
+        const password =
+            document.getElementById(
+                "registerPassword"
+            );
+
+
+        if (password) {
+
+            password.addEventListener(
+                "input",
+                updatePasswordRules
+            );
+
+        }
+
+
+        document.getElementById("online")
+            .textContent =
+            Math.floor(
+                Math.random() * 30
+            ) + 20;
+
+    }
+);
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+document
+.getElementById("loginForm")
+.addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+
+        const email =
+            document.getElementById(
+                "loginEmail"
+            ).value.trim();
+
+
+        const password =
+            document.getElementById(
+                "loginPassword"
+            ).value;
+
+
+        if (!validateCaptcha("login")) {
+
+            showMessage(
+                "loginMessage",
+                "Incorrect CAPTCHA. Please try again.",
+                "error"
+            );
+
+
+            generateCaptcha("login");
+
+            return;
+
+        }
+
+
+        if (!email || !password) {
+
+            showMessage(
+                "loginMessage",
+                "Please enter your email and password.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        pendingLogin.email =
+            email;
+
+
+        showMessage(
+            "loginMessage",
+            "Credentials verified. Sending OTP to your registered email...",
+            "info"
+        );
+
+
+        setTimeout(
+            function() {
+
+                document
+                    .getElementById(
+                        "loginOtpEmail"
+                    )
+                    .textContent =
+                    maskEmail(email);
+
+
+                showStep(
+                    "loginOtpStep"
+                );
+
+
+                /*
+                    DEMO ONLY
+
+                    Real application:
+                    Backend generates OTP
+                    and sends it by email.
+                */
+
+                console.log(
+                    "DEMO LOGIN OTP: 123456"
+                );
+
+            },
+            1000
+        );
+
+    }
+);
+
+
+/* =========================================================
+   LOGIN OTP
+========================================================= */
+
+function verifyLoginOtp() {
+
+    const otp =
+        document.getElementById(
+            "loginOtp"
+        ).value.trim();
+
+
+    if (!/^\d{6}$/.test(otp)) {
+
+        showMessage(
+            "loginOtpMessage",
+            "Please enter the 6-digit OTP.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (otp !== "123456") {
+
+        showMessage(
+            "loginOtpMessage",
+            "Invalid OTP. Please try again.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showMessage(
+        "loginOtpMessage",
+        "Login successful. Redirecting...",
+        "success"
+    );
+
+
+    setTimeout(
+        function() {
+
+            /*
+                Change this to your
+                actual authenticated page.
+            */
+
+            window.location.href =
+                "dashboard.html";
+
+        },
+        1000
+    );
+
+}
+
+
+function resendLoginOtp() {
+
+    showMessage(
+        "loginOtpMessage",
+        "A new OTP has been sent to your registered email.",
+        "success"
+    );
+
+
+    console.log(
+        "DEMO LOGIN OTP: 123456"
+    );
+
+}
+
+
+/* =========================================================
+   REGISTRATION
+========================================================= */
+
+document
+.getElementById("registerForm")
+.addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+
+        const name =
+            document
+                .getElementById(
+                    "registerName"
+                )
+                .value.trim();
+
+
+        const email =
+            document
+                .getElementById(
+                    "registerEmail"
+                )
+                .value.trim();
+
+
+        const password =
+            document
+                .getElementById(
+                    "registerPassword"
+                )
+                .value;
+
+
+        const confirmPassword =
+            document
+                .getElementById(
+                    "confirmPassword"
+                )
+                .value;
+
+
+        if (!validateCaptcha("register")) {
+
+            showMessage(
+                "registerMessage",
+                "Incorrect CAPTCHA. Please try again.",
+                "error"
+            );
+
+
+            generateCaptcha(
+                "register"
+            );
+
+            return;
+
+        }
+
+
+        const rules =
+            validatePassword(
+                password
+            );
+
+
+        if (
+            !Object
+                .values(rules)
+                .every(Boolean)
+        ) {
+
+            showMessage(
+                "registerMessage",
+                "Password must contain at least 8 characters, uppercase, lowercase, number and special symbol.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (
+            password !==
+            confirmPassword
+        ) {
+
+            showMessage(
+                "registerMessage",
+                "Passwords do not match.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        pendingRegister = {
+
+            name:
+                name,
+
+            email:
+                email,
+
+            password:
+                password
+
+        };
+
+
+        showMessage(
+            "registerMessage",
+            "Registration accepted. Sending email verification OTP...",
+            "info"
+        );
+
+
+        setTimeout(
+            function() {
+
+                document
+                    .getElementById(
+                        "registerOtpEmail"
+                    )
+                    .textContent =
+                    maskEmail(email);
+
+
+                showStep(
+                    "registerOtpStep"
+                );
+
+
+                console.log(
+                    "DEMO REGISTRATION OTP: 123456"
+                );
+
+            },
+            1000
+        );
+
+    }
+);
+
+
+/* =========================================================
+   REGISTER OTP
+========================================================= */
+
+function verifyRegisterOtp() {
+
+    const otp =
+        document
+            .getElementById(
+                "registerOtp"
+            )
+            .value.trim();
+
+
+    if (!/^\d{6}$/.test(otp)) {
+
+        showMessage(
+            "registerOtpMessage",
+            "Please enter a valid 6-digit OTP.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (otp !== "123456") {
+
+        showMessage(
+            "registerOtpMessage",
+            "Incorrect OTP.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showMessage(
+        "registerOtpMessage",
+        "Email verified successfully. Account created!",
+        "success"
+    );
+
+
+    setTimeout(
+        function() {
+
+            window.location.href =
+                "dashboard.html";
+
+        },
+        1200
+    );
+
+}
+
+
+function resendRegisterOtp() {
+
+    showMessage(
+        "registerOtpMessage",
+        "A new verification OTP has been sent to your email.",
+        "success"
+    );
+
+
+    console.log(
+        "DEMO REGISTRATION OTP: 123456"
+    );
+
+}
+
+
+/* =========================================================
+   FORGOT PASSWORD
+========================================================= */
+
+document
+.getElementById("forgotForm")
+.addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+
+        const email =
+            document
+                .getElementById(
+                    "forgotEmail"
+                )
+                .value.trim();
+
+
+        if (!validateCaptcha("forgot")) {
+
+            showMessage(
+                "forgotMessage",
+                "Incorrect CAPTCHA.",
+                "error"
+            );
+
+
+            generateCaptcha(
+                "forgot"
+            );
+
+            return;
+
+        }
+
+
+        pendingForgotEmail =
+            email;
+
+
+        showMessage(
+            "forgotMessage",
+            "If the account exists, a password reset OTP has been sent.",
+            "success"
+        );
+
+
+        setTimeout(
+            function() {
+
+                showStep(
+                    "resetStep"
+                );
+
+
+                console.log(
+                    "DEMO RESET OTP: 123456"
+                );
+
+            },
+            1000
+        );
+
+    }
+);
+
+
+/* =========================================================
+   RESET PASSWORD
+========================================================= */
+
+function resetPassword() {
+
+    const otp =
+        document
+            .getElementById(
+                "resetOtp"
+            )
+            .value.trim();
+
+
+    const password =
+        document
+            .getElementById(
+                "newPassword"
+            )
+            .value;
+
+
+    const confirmPassword =
+        document
+            .getElementById(
+                "confirmNewPassword"
+            )
+            .value;
+
+
+    if (otp !== "123456") {
+
+        showMessage(
+            "resetMessage",
+            "Invalid OTP.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const rules =
+        validatePassword(
+            password
+        );
+
+
+    if (
+        !Object
+            .values(rules)
+            .every(Boolean)
+    ) {
+
+        showMessage(
+            "resetMessage",
+            "Password must contain uppercase, lowercase, number, special symbol and at least 8 characters.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (
+        password !==
+        confirmPassword
+    ) {
+
+        showMessage(
+            "resetMessage",
+            "Passwords do not match.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showMessage(
+        "resetMessage",
+        "Password successfully changed.",
+        "success"
+    );
+
+
+    setTimeout(
+        function() {
+
+            showStep(
+                "loginStep"
+            );
+
+
+            generateCaptcha(
+                "login"
+            );
+
+        },
+        1500
+    );
+
+}
+
+
+/* =========================================================
+   EMAIL MASK
+========================================================= */
+
+function maskEmail(email) {
+
+    const parts =
+        email.split("@");
+
+
+    if (parts.length !== 2) {
+
+        return email;
+
+    }
+
+
+    const name =
+        parts[0];
+
+
+    if (name.length <= 2) {
+
+        return "*".repeat(
+            name.length
+        )
+        + "@"
+        + parts[1];
+
+    }
+
+
+    return (
+        name.substring(0, 2)
+        + "****@"
+        + parts[1]
+    );
+
+}
+
+</script>
+
 </body>
+
 </html>
